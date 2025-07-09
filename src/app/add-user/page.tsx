@@ -8,7 +8,7 @@ type UserData = {
   age: number;
   email: string;
   isActive: boolean;
-  createdAt: string;
+  createdAt?: string;
 };
 
 export default function AddUserPage() {
@@ -17,7 +17,6 @@ export default function AddUserPage() {
     age: 0,
     email: "",
     isActive: true,
-    createdAt: new Date().toISOString(),
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -32,7 +31,6 @@ export default function AddUserPage() {
       age: data.age,
       email: data.email,
       isActive: data.isActive,
-      createdAt: data.createdAt,
     };
 
     const res = await fetch("/api/user/add", {
@@ -51,7 +49,6 @@ export default function AddUserPage() {
         age: 0,
         email: "",
         isActive: true,
-        createdAt: new Date().toISOString(),
       });
     } else {
       setMessage(resJson.error || "Something went wrong.");
